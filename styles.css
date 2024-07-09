@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #75b1bd;
+    background-color: #FFFFFF;
 }
 
 header {
@@ -18,7 +18,7 @@ header {
 }
 
 nav {
-    background-color: #fff;
+    background-color: #8ab384;
 }
 
 .nav-menu {
@@ -79,3 +79,23 @@ select, button {
     padding: 20px;
     margin: 20px auto;
   }
+
+.image-box {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 55%;
+    transform: scale(0.5) translate(0, 5%);
+}
+
+.emailsignup {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
