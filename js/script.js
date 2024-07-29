@@ -1,42 +1,31 @@
-document.getElementById('generateBtn').addEventListener('click', function() {
-    const category = document.getElementById('category').value;
-    let prompt = '';
+const result = document.getElementById('prompt');
+let prompt = '';
 
-    switch(category) {
-        case 'personal':
-            prompt = getRandomPrompt(personalPrompts);
-            break;
-        case 'work':
-            prompt = getRandomPrompt(workPrompts);
-            break;
-        case 'creative':
-            prompt = getRandomPrompt(creativePrompts);
-            break;
-        default:
-            prompt = 'Please select a category.';
-    }
+function getPromptByCategory(){
+    const section = document.getElementById('category').value;
+    const data = {category: section};
+    fetch('http://localhost:5500/prompt', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        result.textContent = data.prompt;
+    })
+    .catch(error => console.error('Error fetching prompt!', error));
+}
 
-    document.getElementById('prompt').textContent = prompt;
-});
-
-const personalPrompts = [
-    'What are you grateful for today?',
-    'Describe a memorable moment from your childhood.',
-    'What are your goals for the next year?'
-];
-
-const workPrompts = [
-    'What is the biggest challenge you face at work?',
-    'Describe a recent accomplishment you are proud of.',
-    'What skills do you want to develop and why?'
-];
-
-const creativePrompts = [
-    'Write a story about a hidden treasure.',
-    'Describe a day in the life of a fictional character.',
-    'Imagine a world where everyone can fly. What would it be like?'
-];
-
-function getRandomPrompt(prompts) {
-    return prompts[Math.floor(Math.random() * prompts.length)];
+function getRandomPrompts(){
+    fetch('http://localhost:5500/randPrompts', {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => {
+        
+        result.textContent = data.prompt;
+    })
+    .catch(error => console.error('Error fetching prompt!', error));
 }
