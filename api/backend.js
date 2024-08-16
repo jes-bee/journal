@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 const envPath = path.resolve(__dirname, '../.env');
 env.config({path:envPath});
-
+app.use(cors());
 
 const pool = new Pool({
     connectionString: process.env.NODE_SB,

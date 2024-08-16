@@ -4,7 +4,7 @@ let prompt = '';
 function getPromptByCategory(){
     const section = document.getElementById('category').value;
     const data = {category: section};
-    fetch('https://journal-git-fork-jbidlack-main-jessicas-projects-83498b59.vercel.app/prompt', {
+    fetch('https://journal-git-fork-jbidlack-main-jessicas-projects-83498b59.vercel.app/api/prompt', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ function getPromptByCategory(){
 }
 
 function getRandomPrompts(){
-    fetch('https://journal-git-fork-jbidlack-main-jessicas-projects-83498b59.vercel.app/randPrompts', {
+    fetch('https://journal-git-fork-jbidlack-main-jessicas-projects-83498b59.vercel.app/api/randPrompts', {
         method: 'GET'
     })
     .then(response => response.json())
