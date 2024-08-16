@@ -2,12 +2,15 @@ const env = require('dotenv');
 const { Pool } = require('pg');
 const path = require('path');
 const cors = require('cors');
-const router = require('./app');
 const express = require('express');
+const router = require('./app');
+
 const app = express();
 const envPath = path.resolve(__dirname, '../.env');
 env.config({path:envPath});
+
 app.use(cors());
+app.use(express.json());
 
 const pool = new Pool({
     connectionString: process.env.NODE_SB,
