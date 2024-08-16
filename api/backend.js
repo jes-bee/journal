@@ -2,7 +2,7 @@ const env = require('dotenv');
 const { Pool } = require('pg');
 const path = require('path');
 const cors = require('cors');
-const routes = require('./app');
+const router = require('./app');
 const express = require('express');
 const app = express();
 const envPath = path.resolve(__dirname, '../.env');
@@ -23,7 +23,7 @@ const query = (text, params) => pool.query(text, params);
 module.exports.query = query; // Export the query function for use in routes
 
 // Use the routes defined in routes.js
-app.use('/api', routes);
+app.use('/api', router);
 
 module.exports = app; // Export the Express app for Vercel
 
