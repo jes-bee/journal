@@ -14,7 +14,7 @@ app.use(cors());
 
 function decrypt(text){
     const algorithm = 'aes-256-ctr';
-    const secretKey = process.env.KEY || 'mystrongsecretkey';
+    const secretKey = process.env.KEY;
 
     if (!secretKey || secretKey.length !== 64) {
         throw new Error('SECRET_KEY must be a 32-byte hexadecimal string (64 characters long)');
