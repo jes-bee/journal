@@ -2,7 +2,7 @@
     "version": 2,
 
     "routes": [
-      { "src": "/backend/(.*)", "dest": "/api/$1.js" },
+      { "src": "/api/(.*)", "dest": "/api/$1.js" },
       { "src": "/css/(.*)", "dest": "/css/$1" },
       { "src": "/images/(.*)", "dest": "/images/$1" },
       { "src": "/js/(.*)", "dest": "/js/$1" },
