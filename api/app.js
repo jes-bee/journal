@@ -4,13 +4,12 @@ const env = require('dotenv');
 const express = require('express');
 const db = require('./backend');
 const crypto = require('crypto');
-const app = express();
+const router = express.Router();
 const envPath = path.resolve(__dirname, '../.env');
 env.config({path:envPath});
-const PORT = 5500;
 
-app.use(express.json());
-app.use(cors());
+router.use(express.json());
+router.use(cors());
 
 function decrypt(text){
     const algorithm = 'aes-256-ctr';
@@ -30,10 +29,7 @@ function decrypt(text){
     return decrypted.toString();
 }
 
-
-
-app.post('/prompt', async (req, res) => {
-
+router.post('/prompt', async (req, res) => {
     const { category } = req.body;
 
     if (!category){
@@ -63,7 +59,7 @@ app.post('/prompt', async (req, res) => {
     }
 });
 
-app.get('/randPrompts', async(req, res) => {
+router.get('/randPrompts', async(req, res) => {
     try {
         const result = await db.query(
             'select prompt from prompt '+
@@ -86,6 +82,4 @@ app.get('/randPrompts', async(req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+module.exports = router;
