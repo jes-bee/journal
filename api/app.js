@@ -2,12 +2,12 @@ const path = require('path');
 const cors = require('cors');
 const env = require('dotenv');
 const express = require('express');
+const router = express.Router();
 const db = require('./backend');
 const crypto = require('crypto');
 const app = express();
 const envPath = path.resolve(__dirname, '../.env');
 env.config({path:envPath});
-const PORT = 5500;
 
 app.use(express.json());
 app.use(cors());
@@ -30,10 +30,7 @@ function decrypt(text){
     return decrypted.toString();
 }
 
-
-
 app.post('/prompt', async (req, res) => {
-
     const { category } = req.body;
 
     if (!category){
@@ -86,6 +83,4 @@ app.get('/randPrompts', async(req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+module.exports = router;
