@@ -1,30 +1,32 @@
-const env = require('dotenv');
-const { Pool } = require('pg');
-const path = require('path');
-// const cors = require('cors');
 const express = require('express');
-// const router = require('./app');
+const cors = require('cors');
+const env = require('dotenv');
+const path = require('path');
+const { Pool } = require('pg');
 
 const app = express();
-app.use('/api', require('./app'));
 const envPath = path.resolve(__dirname, '../.env');
-env.config({path:envPath});
+env.config({ path: envPath });
 
-// app.use(cors());
-// app.use(express.json());
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Import and mount routes
+app.use('/api', require('./app'));
 
 const pool = new Pool({
     connectionString: process.env.NODE_SB,
-
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 // Database query function
 const query = (text, params) => pool.query(text, params);
 
-module.exports.query = {query}; // Export the query function for use in routes
+// Export the query function
+module.exports = { query };
 
-// // Use the routes defined in routes.js
-// app.use('/api', router);
-
-// module.exports = app; // Export the Express app for Vercel
-
+// Export the Express app for Vercel
+// module.exports = app;
