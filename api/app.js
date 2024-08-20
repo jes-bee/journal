@@ -37,7 +37,7 @@ router.post('/prompt', async (req, res) => {
     }
 
     try {
-        const result = await db.query(
+        const result = await query(
             'select prompt from prompt '+
             'where category = $1 '+
             'order by random() limit 1 ',
@@ -61,7 +61,7 @@ router.post('/prompt', async (req, res) => {
 
 router.get('/randPrompts', async(req, res) => {
     try {
-        const result = await db.query(
+        const result = await query(
             'select prompt from prompt '+
             'order by random() limit 1 '
         );
