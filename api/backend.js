@@ -29,4 +29,4 @@ const query = (text, params) => pool.query(text, params);
 module.exports = { query };
 
 // Export the Express app for Vercel
-module.exports = app;
+// module.exports = app;
