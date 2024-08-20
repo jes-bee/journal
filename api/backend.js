@@ -2,7 +2,7 @@ const env = require('dotenv');
 const { Pool } = require('pg');
 const path = require('path');
 // const cors = require('cors');
-// const express = require('express');
+const express = require('express');
 // const router = require('./app');
 
 const app = express();
