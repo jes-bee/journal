@@ -6,18 +6,16 @@ const path = require('path');
 // const router = require('./app');
 
 const app = express();
+app.use('/api', require('./app'));
 const envPath = path.resolve(__dirname, '../.env');
 env.config({path:envPath});
 
-app.use(cors());
-app.use(express.json());
+// app.use(cors());
+// app.use(express.json());
 
 const pool = new Pool({
     connectionString: process.env.NODE_SB,
-    ssl: {
-        rejectUnauthorized: false
-    }
-    
+
 });
 
 // Database query function
