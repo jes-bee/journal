@@ -47,13 +47,17 @@ nav {
 }
 
 .container {
+    display: flex;
+    justify-content: center;
     text-align: center;
     background: #fff;
     padding: 20px;
     margin: 20px auto;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 50em;
+    min-height: 40em;
+    align-items: center;
 }
 
 h1 {
@@ -101,4 +105,16 @@ select, button {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 600px;
+}
+
+#message{
+    display: flex;
+    width: 40em; 
+    min-height: 20em;
+}
+
+#from_name, #user_email{
+    padding:0.25em;
+    margin-bottom: 2em;
+    width: 50%;
 }
